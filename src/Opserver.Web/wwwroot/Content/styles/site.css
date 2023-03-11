@@ -1,0 +1,43 @@
+﻿.table-super-condensed > thead > tr > td,
+.table-super-condensed > tbody > tr > td,
+.table-super-condensed > tfoot > tr > td 
+{
+    font-size : 15px;
+}
+
+.page-header {
+    font-size: 15px;
+}
+
+a {
+    font-size: 15px;
+}
+
+.actions .btn-xs, .page-header .pull-right .btn-xs {
+    font-size: 15px;
+}
+
+.panel-heading {
+    font-size: 15px;
+}
+
+.panel .value-block label {
+    font-size: 13px;
+}
+
+.sort-row sort-category {
+    font-size: 15px;
+}
+
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    font-size: 15px;
+}
+
+.nav-tabs > li > a {
+    font-size: 15px;
+}
+
+.table-super-condensed > thead > tr > th, .table-super-condensed > tbody > tr > th, .table-super-condensed > tfoot > tr > th {
+    font-size: 15px;
+}
+
