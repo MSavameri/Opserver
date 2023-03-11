@@ -1,0 +1,60 @@
+﻿/* Configuration for the SQL Server dashboard */
+{
+  // The default connection string used unless specifically provided on a node
+  // $ServerName$ gets replaces with the name property of the instance
+  "defaultConnectionString": "Data Source=$ServerName$;Initial Catalog=master;Integrated Security=SSPI;",
+  // How often to poll all servers (defaults to 60 seconds if not configured)
+  "refreshIntervalSeconds": 30,
+  //base URI
+  "smsSenderBaseUri": "http://172.20.128.122:8002",
+  "smsSenderRequestUri": "/SqlPerfApi/send?message",
+  //100 gb
+  "freeDiskSpace": 107374182400,
+  //cpu and memory: 90%
+  "cpuMemoryUsage": 90,
+  //transactionlog file name
+  "transactionLogFile": "bi_sg3_log",
+  // Always On Availability Group Clusters
+  "clusters": [
+    {
+      //// Used purely for display
+      "name": "Servers",
+      //// How often to poll the server
+      "refreshIntervalSeconds": 20,
+      //// The list of nodes (servers) in this AG setup
+      "nodes": [
+        //{ "name": "DESKTOP-8PN5CI7" },
+        //{ "name": "192.168.1.102" }
+      ]
+    }
+  ],
+
+  "Users": [
+    { "UserName": "admin" },
+    { "UserName": "guest" },
+    { "UserName": "root" },
+    { "UserName": "ssupport11" }
+  ],
+
+  // Standalone instances
+  "instances": [
+    // An example with all the options configured
+    {
+      "name": "BIPCERP01：172.20.128.121",
+      "connectionString": "Data Source=172.20.128.121;Initial Catalog=master;User Id=sa;Password=Sa@123456;",
+      "refreshIntervalSeconds": 200
+    },
+    {
+      "name": "BIPCERP03：172.20.128.123",
+      "connectionString": "Data Source=172.20.128.123;Initial Catalog=master;User Id=sa;Password=Sa@123456;",
+      "refreshIntervalSeconds": 200
+    }
+
+    // Some standalone servers (default instance) using default refresh and connection strings:
+    //{ "name": "NY-DESQL01" },
+    //{ "name": "NY-RESTORESQL01" },
+    //{ "name": "NY-UTILSQL01" },
+    // Example of a named instance
+    //{ "name": "NY-SQL05\\MYINSTANCENAME" }
+  ]
+}

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Opserver.Data.Dashboard;
+using Opserver.Data.SQL;
 using Opserver.Helpers;
 using Opserver.Views.Dashboard;
 
@@ -16,7 +17,12 @@ namespace Opserver.Controllers
     [OnlyAllow(DashboardRoles.Viewer)]
     public partial class DashboardController : StatusController<DashboardModule>
     {
-        public DashboardController(DashboardModule module, IOptions<OpserverSettings> settings) : base(module, settings) { }
+        private readonly ISmsSender _smsSender;
+
+        public DashboardController(DashboardModule module, IOptions<OpserverSettings> settings, ISmsSender smsSender) : base(module, settings)
+        {
+            _smsSender = smsSender;
+        }
 
         [DefaultRoute("dashboard")]
         public ActionResult Dashboard(string q)
@@ -38,14 +44,12 @@ namespace Opserver.Controllers
             {
                 foreach (var detail in item)
                 {
-                    if(detail.CPULoad  >=  5)
+                    if (detail.CPULoad >= Module.Settings.CPUCriticalPercent)
                     {
-                        Debug.Print($"CPU usage is around:{detail.CPULoad}%");
                     }
 
-                    if(detail.MemoryUsed >= 50)
+                    if (detail.MemoryUsed >= (float)Module.Settings.MemoryWarningPercent)
                     {
-                        Debug.Print($"MEMORY usage is around:{detail.MemoryUsed}%");
                     }
                 }
             }
@@ -109,7 +113,7 @@ namespace Opserver.Controllers
         }
 
         [Route("dashboard/node")]
-        public ActionResult Node([DefaultValue(CurrentStatusTypes.Stats)]CurrentStatusTypes view, string node = null)
+        public ActionResult Node([DefaultValue(CurrentStatusTypes.Stats)] CurrentStatusTypes view, string node = null)
         {
             var vd = new NodeModel
             {

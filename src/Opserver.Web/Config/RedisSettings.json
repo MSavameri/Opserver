@@ -1,0 +1,55 @@
+{
+  /* If a server doesn't specify any instances, then these will be used as a fallback.
+     For most simple setups, this is a single :6379 instance 
+     This is intended for setups with a lot of the same mirrors.
+     If that's not use, just configure per-server below under "Servers". */
+  //"defaults": {
+    //"instances": [
+    //  {
+    //    "name": "Core (Q&A)", // Name of the instance for the UI
+    //    "port": 6379, // Port redis is running on
+    //    /* (Optional) Regexes to use in memory analysis
+    //       Each key is evaluated against these and they're use for bucketing.
+    //       This helps find out what the heavy key patterns are. */
+    //    "analysisRegexes": {
+    //      "**local**": "^local-",
+    //      "**dev**": "^dev-",
+    //      "**local:**": "^local:",
+    //      "**dev:**": "^dev:"
+    //    }
+    //  },
+    //  {
+    //    "name": "Careers",
+    //    "port": 6380
+    //  }
+    //]
+  //},
+  /* Individually specified servers (DNS entries or IPs)
+     Each of these may specify their own instances. 
+     If they don't, each will inherit the instances configured in allServers above. */
+  "Servers": [
+    // Simple server, inheriting the instances from allServers
+    { "name": "172.20.128.122" },
+    { "name": "172.20.128.123" },
+    //{ "name": "ny-redis02" },
+    // Server specifying it's own instance list, NOT inheriting from allServers above
+    {
+      "name": "172.20.128.122",
+      "instances": [
+        {
+          "name": "BIPCERP02",
+          "port": 6379
+        }
+      ]
+    },
+    {
+      "name": "172.20.128.123",
+      "instances": [
+        {
+          "name": "BIPCERP03",
+          "port": 6379
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+//{
+//  "provider": "EveryonesAnAdmin"
+//}
+
+{
+  "provider": "ActiveDirectory",
+  "server": "bipc.or.ir", // (Optional) If the web server is on the domain, leave this off
+  "authUser": "<AD Bind Username>", // (Optional) If the process is running ith bindable credentials, leave this off
+  "authPassword": "<AD Bind Password>", // (Optional) If the process is running ith bindable credentials, leave this off
+  "apiKey": "<Global API Key>",
+  "internalNetwork": [
+    {
+      "name": "My Internal",
+      "cidr": "10.0.0.0/8"
+    }
+  ],
+  "viewEverythingGroups": "*",
+  "adminEverythingGroups": "*"
+}
+
+//{
+//  "provider": "EveryonesReadOnly"
+//}

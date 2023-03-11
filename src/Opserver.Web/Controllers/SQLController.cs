@@ -20,7 +20,6 @@ namespace Opserver.Controllers
     {
         private readonly ISmsSender _smsSender;
         private readonly IHttpClientFactory _httpClient;
-        private const string _httpClientName = "SmsSender";
 
         public SQLController(SQLModule sqlModule, IOptions<OpserverSettings> settings,
             IHttpClientFactory httpClient, ISmsSender smsSender) : base(sqlModule, settings)
@@ -84,7 +83,7 @@ namespace Opserver.Controllers
                 await _smsSender.Instance(Module.Settings.SmsSenderBaseUri,
                     Module.Settings.SmsSenderRequestUri,
                     $"CPU usage is around:{i.CurrentCPUPercent}%",
-                    _httpClientName,
+                    "SmsSender",
                     _httpClient);
             }
 
@@ -93,7 +92,7 @@ namespace Opserver.Controllers
                 await _smsSender.Instance(Module.Settings.SmsSenderBaseUri,
                     Module.Settings.SmsSenderRequestUri,
                     $"MEM usage is around:{(int)i.CurrentMemoryPercent}%",
-                    _httpClientName,
+                    "SmsSender",
                     _httpClient);
             }
 

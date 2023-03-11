@@ -33,6 +33,7 @@ namespace Opserver
                                 //.AddPrefixedJsonFile("Modules:PagerDuty", "Config/PagerDutySettings.json")
                                 .AddPrefixedJsonFile("Modules:Redis", "Config/RedisSettings.json")
                                 .AddPrefixedJsonFile("Modules:SQL", "Config/SQLSettings.json")
+                                .AddPrefixedJsonFile("Modules:General", "Config/GeneralSettings.json")
                                 // End compat
                                 .AddJsonFile("Config/opserverSettings.json", optional: true, reloadOnChange: true)
                                 .AddJsonFile("opserverSettings.json", optional: true, reloadOnChange: true)
